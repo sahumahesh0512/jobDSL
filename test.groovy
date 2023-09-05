@@ -4,7 +4,7 @@ multibranchPipelineJob('my-job') {
     branchSource {
       source {
         github {
-          repoOwner('/sahumahesh0512 ')
+          repoOwner('/sahumahesh0512')
           repository('jobDSL')
           repositoryUrl('https://github.com/sahumahesh0512/jobDSL.git')
           apiUri("https://github.com")
