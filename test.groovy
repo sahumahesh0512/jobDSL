@@ -1,8 +1,8 @@
-job('my-job') {
+multibranchpipelinejob('my-job') {
 
     scm {
 
-        git('https://github.com/AstroTech/ecosystem-example-java.git')
+        git('https://github.com/sahumahesh0512/jobDSL/blob/main/test.jenkinsfile')
 
     }
 
