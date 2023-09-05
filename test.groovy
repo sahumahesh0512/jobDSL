@@ -1,56 +1,21 @@
 multibranchPipelineJob('my-job') {
-  displayName('moy-job')
-  branchSources {
-    branchSource {
-      source {
-        github {
-          configuredByUrl(false)
-          repoOwner('/sahumahesh0512')
-          repository('jobDSL')
-          repositoryUrl('https://github.com/sahumahesh0512/jobDSL.git')
-          apiUri("https://github.com")
-          credentialsId('mahesh-github')
-          traits {
-            gitHubBranchDiscovery {
-                strategyId(3)
-            }
-            gitHubPullRequestDiscovery {
-              strategyId(2)
-            }
-          }
-        }
-      }
-      strategy {
-        allBranchesSame {
-          props {
-            suppressAutomaticTriggering {
-              strategy('INDEXING')
-              triggeredBranchesRegex('.*')
-            }
-          }
-          }
-      }
 
-      buildStrategies {
-        buildAllBranches {
-          strategies {
-            buildChangeRequests {
-              ignoreTargetOnlyChanges(true)
-              ignoreUntrustedChanges(false)
-            }
-          }
-        }
-      }
+    scm {
+
+        git('https://github.com/sahumahesh0512/jobDSL/blob/main/test.jenkinsfile')
+
     }
-  }
-  factory {
-    workflowBranchProjectFactory {
-      scriptPath('test.jenkinsfile')
+
+    triggers {
+
+        scm('H/15 * * * *')
+
     }
-  }
-  orphanedItemStrategy {
-    discardOldItems {
-      daysToKeep(3)
-      }
-  }
+
+    steps {
+
+        maven('-e clean test')
+
+    }
+
 }
