@@ -1,21 +1,16 @@
-multibranchPipelineJob('my-job') {
-
-    scm {
-
-        git('https://github.com/sahumahesh0512/jobDSL/blob/main/test.jenkinsfile')
-
+pipelineJob('my-job') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/sahumahesh0512/jobDSL.git')
+                    }
+                    branches('*/main') // Configure the branch patterns to build
+                    scriptPath('test.jenkinsfile') // Specify the location of the Jenkinsfile in your repository
+                }
+            }
+        }
     }
-
-    triggers {
-
-        scm('H/15 * * * *')
-
-    }
-
-    steps {
-
-        maven('-e clean test')
-
-    }
-
 }
+
