@@ -1,0 +1,20 @@
+pipeline{
+    agent any
+    environment variable{
+      PATH= "/usr/share/maven/bin:$PATH"
+    }
+    stages{
+        stage("Git Checkout"){
+            steps{
+                git 'https://github.com/sahumahesh0512/test1.git'
+            }
+        }
+        stage("Maven Build"){
+          steps{
+            sh "mvn clean package"
+          }
+        }
+          
+        
+    }
+}
